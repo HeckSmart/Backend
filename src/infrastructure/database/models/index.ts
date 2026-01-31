@@ -42,4 +42,16 @@ export function registerModels(sequelize: Sequelize): void {
     sequelize,
   });
   sequelize.models.User = UsersModel;
+
+  // User (basic) and Driver (personalized) linked by employeeId
+  UsersModel.hasOne(DriverModel, {
+    foreignKey: "employeeId",
+    sourceKey: "employeeId",
+    as: "driver",
+  });
+  DriverModel.belongsTo(UsersModel, {
+    foreignKey: "employeeId",
+    targetKey: "employeeId",
+    as: "user",
+  });
 }

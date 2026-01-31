@@ -1,1 +1,4 @@
-export { GetDriverPhoneUseCase } from "./get-driver-phone.use-case.js";
+export {
+  GetDriverDetailsUseCase,
+  GetDriverPhoneUseCase,
+} from "./get-driver-phone.use-case.js";

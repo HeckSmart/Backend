@@ -11,7 +11,10 @@ import {
 import { DriverRepository } from "./infrastructure/database/repositories/driver.repository.js";
 import { registerModels } from "./infrastructure/database/models/index.js";
 import { getDatabaseConfig } from "./config/database.config.js";
-import { GetDriverPhoneUseCase } from "./application/use-cases/driver/index.js";
+import {
+  GetDriverDetailsUseCase,
+  GetDriverPhoneUseCase,
+} from "./application/use-cases/driver/index.js";
 import { CheckHealthUseCase } from "./application/use-cases/health/index.js";
 import type { IDatabase } from "./application/ports/index.js";
 
@@ -24,10 +27,12 @@ const checkHealth = new CheckHealthUseCase(clock, database);
 
 const driverRepository = new DriverRepository(sequelize);
 const getDriverPhone = new GetDriverPhoneUseCase(driverRepository);
+const getDriverDetails = new GetDriverDetailsUseCase(driverRepository);
 
 export const app = createApp({
   checkHealth,
   getDriverPhone,
+  getDriverDetails,
 });
 
 export { sequelize, database };
