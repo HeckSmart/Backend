@@ -1,4 +1,16 @@
 import type { Sequelize } from "sequelize";
+import DriverModel, {
+  driverModelAttributes,
+  driverModelOptions,
+} from "./driverModel.js";
+import StationModel, {
+  stationModelAttributes,
+  stationModelOptions,
+} from "./stationModel.js";
+import UsersModel, {
+  usersModelAttributes,
+  usersModelOptions,
+} from "./usersModel.js";
 
 /**
  * Register all Sequelize models and associations.
@@ -12,6 +24,22 @@ import type { Sequelize } from "sequelize";
  *     // User.associate?.(sequelize.models);
  *   }
  */
-export function registerModels(_sequelize: Sequelize): void {
-  // Add model init and associations here as you add entities
+export function registerModels(sequelize: Sequelize): void {
+  DriverModel.init(driverModelAttributes, {
+    ...driverModelOptions,
+    sequelize,
+  });
+  sequelize.models.Driver = DriverModel;
+
+  StationModel.init(stationModelAttributes, {
+    ...stationModelOptions,
+    sequelize,
+  });
+  sequelize.models.Station = StationModel;
+
+  UsersModel.init(usersModelAttributes, {
+    ...usersModelOptions,
+    sequelize,
+  });
+  sequelize.models.User = UsersModel;
 }

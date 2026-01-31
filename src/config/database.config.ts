@@ -31,3 +31,4 @@ export function getDatabaseConfig(): DatabaseConfig {
     connectTimeoutMs: Number(getEnv("DB_CONNECT_TIMEOUT", "10000")),
   };
 }
+export default getDatabaseConfig();
